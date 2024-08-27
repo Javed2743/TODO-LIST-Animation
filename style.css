@@ -1,0 +1,393 @@
+/* Reset default margin and padding for all elements and set box-sizing to border-box */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Basic styling for the body */
+body {
+  font-family: 'Roboto', sans-serif;
+  /* Set the font for the entire document */
+  height: 100vh;
+  /* Set height to 100% of the viewport height */
+  display: flex;
+  /* Use Flexbox to align the content */
+  align-items: center;
+  /* Center align content vertically */
+  justify-content: center;
+  /* Center align content horizontally */
+  background: url(./background.gif) no-repeat;
+  /* Background image with no repeat */
+  background-position: center;
+  /* Center the background image */
+  background-size: cover;
+  /* Cover the entire background area */
+}
+
+/* Container for the main content */
+
+
+.container {
+  width: 400px;
+  height: auto;
+  min-height: 400px;
+  padding: 30px;
+  background: transparent;
+  border: 2px solid #e6b7eca1;
+  border-radius: 10px;
+  backdrop-filter: blur(15px);
+  /* Add a blur effect to the background */
+}
+
+
+h1 {
+  color: #eee;
+  text-align: center;
+  margin-bottom: 36px;
+}
+/* Input container to hold the input field and button */
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  /* Space between input and button */
+  margin-bottom: 25px;
+}
+
+/* Styling for the todo input field */
+.todo-input {
+  flex: 1;
+  outline: none;
+  /* Remove default outline */
+  padding: 10px 10px 10px 20px;
+  /* Padding inside the input */
+  background-color: transparent;
+  /* Transparent background */
+  border: 2px solid #e6b7eca1;
+  /* Border with color */
+  border-radius: 30px;
+  /* Rounded corners */
+  color: #eee;
+  /* Text color */
+  font-size: 16px;
+  margin-right: 10px;
+  /* Space between input and button */
+}
+
+/* Placeholder text styling in the input field */
+.todo-input::placeholder {
+  color: #bfbfbf;
+}
+
+/* Styling for the 'Add' button */
+.add-button {
+  border: none;
+  /* Remove border */
+  outline: none;
+  /* Remove outline */
+  background: #e6b7eca1;
+  /* Background color */
+  color: #fff;
+  /* Text color */
+  font-size: 35px;
+  /* Font size */
+  cursor: pointer;
+  /* Pointer cursor on hover */
+  border-radius: 40px;
+  /* Rounded corners */
+  width: 40px;
+  height: 40px;
+}
+
+/* Styling for the image when the list is empty */
+.empty-image {
+  margin: 55px auto 0;
+  /* Center the image horizontally */
+  display: block;
+}
+
+/* Styling for each todo item */
+.todo {
+  list-style: none;
+  /* Remove default list style */
+  display: flex;
+  align-items: center;
+  /* Center items vertically */
+  justify-content: space-between;
+  /* Space between content and delete button */
+  background-color: #463c7b;
+  /* Background color */
+  border-radius: 5px;
+  /* Rounded corners */
+  margin: 10px 0;
+  /* Margin around each todo */
+  padding: 10px 12px;
+  /* Padding inside the todo */
+  border: 2px solid #e6b7eca1;
+  /* Border with color */
+  transition: all 0.2s ease;
+  /* Smooth transition for hover effect */
+  font-size: 16px;
+}
+
+/* Remove margin for the first and last todo item */
+.todo:first-child {
+  margin-top: 0;
+}
+
+.todo:last-child {
+  margin-bottom: 0;
+}
+
+/* Hover effect for todo items */
+.todo:hover {
+  background-color: #e6b7eca1;
+}
+
+/* Styling for the label inside a todo item */
+.todo label {
+  cursor: pointer;
+  /* Pointer cursor on hover */
+  width: fit-content;
+  /* Fit content width */
+  display: flex;
+  /* Flexbox for alignment */
+  align-items: center;
+  /* Center items vertically */
+  font-family: 'Roboto', sans-serif;
+  /* Font family */
+  color: #eee;
+  /* Text color */
+}
+
+/* Styling for the span inside a todo item */
+.todo span {
+  padding-left: 20px;
+  /* Space between checkbox and text */
+  position: relative;
+  /* Position relative for absolute positioning of pseudo-element */
+  cursor: pointer;
+  /* Pointer cursor on hover */
+}
+
+/* Styling for the pseudo-element before the span */
+span::before {
+  content: "";
+  /* Empty content for pseudo-element */
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  /* Absolute positioning */
+  margin-left: -30px;
+  /* Adjust position */
+  border-radius: 100px;
+  /* Rounded corners */
+  border: 2px solid #e6b7eca1;
+  /* Border with color */
+}
+
+/* Hide default checkbox */
+input[type='checkbox'] {
+  visibility: hidden;
+}
+
+/* Strikethrough text when checkbox is checked */
+input:checked+span {
+  text-decoration: line-through;
+}
+
+/* Checked state styling for pseudo-element before span */
+.todo:hover input:checked+span::before,
+input:checked+span::before {
+  background: url(./check.svg) 50% 50% no-repeat #09bb21;
+  /* Checked background */
+  border-color: #09bb21;
+  /* Border color */
+}
+
+/* Hover effect for the checkbox pseudo-element */
+.todo:hover span::before {
+  border-color: #eee;
+}
+
+/* Styling for the delete button inside a todo item */
+.todo .delete-btn {
+  background-color: transparent;
+  /* Transparent background */
+  border: none;
+  /* Remove border */
+  cursor: pointer;
+  /* Pointer cursor on hover */
+  color: #eee;
+  /* Text color */
+
+  font-size: 24px;
+  /* Font size */
+}
+
+/* Container for all todos with scroll behavior */
+.todos-container {
+  height: 300px;
+  /* Fixed height */
+  overflow: overlay;
+  /* Overlay scrollbar */
+}
+
+/* Custom scrollbar styling */
+.todos-container::-webkit-scrollbar-track {
+  background: rgb(247, 247, 247);
+  /* Track background */
+  border-radius: 20px;
+  /* Rounded corners */
+}
+
+
+
+.todos-container::-webkit-scrollbar {
+  width: 0;
+  /* Default width */
+}
+
+.todos-container:hover::-webkit-scrollbar {
+  width: 7px;
+  /* Width on hover */
+}
+
+.todos-container::-webkit-scrollbar-thumb {
+  background: #d5d5d5;
+  /* Thumb color */
+  border-radius: 20px;
+  /* Rounded corners */
+}
+
+/* Styling for the filter buttons */
+.filters {
+  display: flex;
+  /* Flexbox for alignment */
+  justify-content: space-between;
+  /* Space between filter buttons */
+  margin-bottom: 25px;
+
+}
+
+/* Styling for individual filter button */
+.filter {
+  color: #eee;
+  /* Text color */
+  padding: 7px 15px;
+  /* Padding */
+  border-radius: 100px;
+  /* Rounded corners */
+  border: 2px solid #e6b7eca1;
+  /* Border with color */
+  transition: all 0.2s ease;
+  /* Smooth transition for hover effect */
+  cursor: pointer;
+  /* Pointer cursor on hover */
+}
+
+/* Active and hover effect for filter buttons */
+.filter.active,
+.filter:hover {
+  background-color: #e6b7eca1;
+}
+
+/* Styling for the 'Delete All' button */
+.delete-all {
+  display: flex;
+  /* Flexbox for alignment */
+  color: #eee;
+  /* Text color */
+  padding: 7px 15px;
+  /* Padding */
+  cursor: pointer;
+  /* Pointer cursor on hover */
+  transition: all 0.2s ease;
+  /* Smooth transition for hover effect */
+  border: 2px solid #e6b7eca1;
+  border-radius: 100px;
+}
+
+/* Hover effect for 'Delete All' button */
+.delete-all:hover {
+  border-radius: 5px;
+  /* Rounded corners */
+  background-color: #e6b7eca1;
+  /* Background color */
+}
+
+/* Animation for the gradient text effect */
+.animate-charcter {
+  text-transform: uppercase;
+  /* Uppercase text */
+  background-image: linear-gradient(-225deg,
+      #231557 0%,
+      #44107a 29%,
+      #ff1361 67%,
+      #fff800 100%);
+  /* Gradient background */
+  background-size: 200% auto;
+  /* Size of the gradient */
+  background-clip: border-box;
+  /* Clip background to border box */
+  color: #fff;
+  /* Text color */
+  background-clip: text;
+  /* Clip background to text */
+  -webkit-background-clip: text;
+  /* Webkit support for background-clip */
+  -webkit-text-fill-color: transparent;
+  /* Transparent text fill */
+  animation: textclip 2s linear infinite;
+  /* Animation for gradient text effect */
+  display: inline-block;
+  /* Inline-block display */
+  font-size: 29.1px;
+  /* Font size */
+  text-align: center;
+  /* Center text horizontally */
+  width: 100%;
+  /* Ensure the element takes up full width for centering */
+}
+
+
+/* Keyframes for the text gradient animation */
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+    /* Move gradient background */
+  }
+}
+
+
+
+
+@import url("https://fonts.googleapis.com/css?family=Raleway:400");
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 90deg;
+  inherits: true;
+}
+
+:root {
+  --d: 2500ms;
+  --angle: 90deg;
+  --gradX: 100%;
+  --gradY: 50%;
+  --c1: rgb(245, 245, 249);
+  --c2: rgba(168, 239, 255, 0.1);
+}
+
+.box {
+  border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
+  animation: borderRotate var(--d) linear infinite forwards;
+}
+
+@keyframes borderRotate {
+  100% {
+    --angle: 420deg;
+  }
+}
